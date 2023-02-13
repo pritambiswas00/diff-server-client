@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Cancel from "../../assets/CancelIcon";
 import HamburgerIcon from "../../assets/HamburgerIcon";
 import ErrorBoundary from "../../Components/ErrorBoundry";
 import headerJson from "../../Data/header.json";
@@ -20,21 +21,27 @@ function Header() {
         </nav>
         <div className="mini-navbar">
           {!showMobileNavBar ? (
-             <button
-             className="hamburger-button"
-             onClick={() => setShowMobileNavBar(true)}
-           >
-             <HamburgerIcon />
-           </button>
+            <button
+              className="hamburger-button"
+              onClick={() => setShowMobileNavBar(true)}
+            >
+              <HamburgerIcon />
+            </button>
           ) : null}
           {showMobileNavBar ? (
             <div className="nav-bar-mobile-list">
-              <button onClick={()=>setShowMobileNavBar(false)}>Close</button>
+              <div className="cancel-button">
+                <button onClick={() => setShowMobileNavBar(false)}>
+                  <Cancel />
+                </button>
+              </div>
+              <div className="nav-list">
                 <ul>
                   {headerJson.header.map((header, index) => (
                     <li key={index}>{header.name}</li>
                   ))}
                 </ul>
+              </div>
             </div>
           ) : null}
         </div>
